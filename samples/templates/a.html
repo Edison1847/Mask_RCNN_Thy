@@ -1,0 +1,36 @@
+<?php
+
+$client = new http\Client;
+$request = new http\Client\Request;
+
+$body = new http\Message\Body;
+$body->addForm(NULL, array(
+  array(
+    'name' => 'file',
+    'type' => null,
+    'file' => '/F:/research/AI/data/Test/4.jpg',
+    'data' => null
+  )
+));
+
+$request->setRequestUrl('http://127.0.0.1:5000/');
+$request->setRequestMethod('POST');
+$request->setBody($body);
+
+$request->setHeaders(array(
+  'cache-control' => 'no-cache',
+  'Connection' => 'keep-alive',
+  'content-length' => '564240',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIk5vIGZpbGUgcGFydCJdfV19.XOwKVw.KEGmFOOJqfvUGEKzu3pVKCC_2PM',
+  'Host' => '127.0.0.1:5000',
+  'Postman-Token' => '123ca5a9-8d3d-4645-9973-aba9b4a3ad4b,c5c643e9-02ac-4154-a6c9-957363bd0c2f',
+  'Cache-Control' => 'no-cache',
+  'Accept' => '*/*',
+  'User-Agent' => 'PostmanRuntime/7.13.0'
+));
+
+$client->enqueue($request)->send();
+$response = $client->getResponse();
+
+echo $response->getBody();

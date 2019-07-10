@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/flipclock.css">
+    <title>Main</title>
+
+  </head>
+<body style="background-color: black;">
+<div class="container">
+  <div class="row mt-4">
+    <div class="col">
+
+    </div>
+    <div id="imgContainer" class="col-md-auto">
+      <img id="originalImage" class="ml-auto" src="{{ url_for('generateAnalyzedImage') }}" alt="User Image" height="600px" width="800px">
+    </div>
+    <div class="col ">
+      <h3>Nuclear crowding :</h3>
+
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-2">
+
+    </div>
+    <div class="col-4 text-center">
+      <!--<h4 class="mx-auto" style="color: white;"></h4>-->
+       <div class="your-clock mx-auto"></div>
+    </div>
+    <div class="col-4 text-right">
+      <div class="row">
+      <div class="col-12 ">
+        <a class="btn btn-outline-dark mx-auto" href="{{ url_for('downloadFile') }}" download>Download the predicted Slide</a>
+    </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 ">
+        <a class="btn btn-outline-dark mx-auto" href="http://ec2-13-235-87-244.ap-south-1.compute.amazonaws.com:5000/">New Image</a>
+    </div>
+    </div>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4 text-center">
+      <!--<h4 class="mx-auto" style="color: white;"></h4>-->
+      <!--<button id="analyze" type="button" class="btn btn-outline-dark mx-auto">Analyze</button>-->
+      <!--<div class="your-clock mx-auto"></div>-->
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="/static/js/flipclock.min.js"></script></body>
+
+<script>
+  $("#download").hide();
+  var clock
+  $("#analyze").click(function(){
+    $.ajax({
+      type: 'POST',
+      url: "/analyzeImage",
+      data: {student_id: 1},
+      dataType: "text",
+      beforeSend: function(){
+          clock = $('.your-clock').FlipClock({
+                        clockFace: 'MinuteCounter'
+                      });
+          },
+      complete: function(){
+          clock.stop(function() {
+              // if(result === "no_errors") location.href = "http://http://127.0.0.1:5000/analyzedImage"
+            // $("#originalImage").hide();
+            //
+            $("#analyze").hide();
+            $("#download").show();
+          });
+      },
+      success: function(response){
+          console.log(response);
+
+          },
+      error: function(error) {console.log(error);}
+    });
+});
+
+
+</script>
+
+</html>
+

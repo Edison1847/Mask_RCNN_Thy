@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="/static/js/jquery.barfiller.js"></script>
+
+    <link rel="stylesheet" href="/static/css/flipclock.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <style>
+        #music-bars span {
+          background-color: #fff;
+          display: block;
+          width: 1px;
+          float: left;
+          margin-right: 2px;
+        }
+        .barfiller {
+          width: 100%;
+          height: 12px;
+          background: #fcfcfc;
+          border: 1px solid #ccc;
+          position: relative;
+          margin-bottom: 20px;
+          box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,.5);
+          -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,.5);
+        }
+
+.barfiller .fill {
+  display: block;
+  position: relative;
+  width: 0px;
+  height: 100%;
+  background: #333;
+  z-index: 1;
+}
+
+.barfiller .tipWrap { display: none; }
+
+.barfiller .tip {
+  margin-top: -30px;
+  padding: 2px 4px;
+  font-size: 11px;
+  color: #fff;
+  left: 0px;
+  position: absolute;
+  z-index: 2;
+  background: #333;
+}
+
+.barfiller .tip:after {
+  border: solid;
+  border-color: rgba(0,0,0,.8) transparent;
+  border-width: 6px 6px 0 6px;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 9px;
+  top: 100%;
+  z-index: 9
+}
+    </style>
+    <title>Main</title>
+
+  </head>
+<body style="background-color: black;">
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col">
+        <div class="row">
+          <div class="col-12">
+            <p id="serverOn" style="color: white;">Server : Powering Up</p>
+            <div id="bar1" class="barfiller">
+            <div class="tipWrap">
+              <span class="tip"></span>
+            </div>
+              <span class="fill" data-percentage="100"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p id="AIOn" style="color: white;">AI : Powering Up</p>
+            <div id="bar2" class="barfiller">
+            <div class="tipWrap">
+              <span class="tip"></span>
+            </div>
+              <span class="fill" data-percentage="100"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p id="AIAnalyze" style="color: white;">AI : Analyzing</p>
+          </div>
+          <div class="col-12 text-center">
+            <div id='music-bars' class="text-center">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div id="imgContainer" class="col-md-auto">
+      <img id="originalImage" class="ml-auto" src="{{ url_for('getImage3', filename = '1.jpg') }}" alt="User Image" height="600px" width="800px">
+    </div>
+    <div class="col ">
+
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-2">
+
+    </div>
+    <div class="col-4 text-center">
+      <!--<h4 class="mx-auto" style="color: white;"></h4>-->
+       <div class="your-clock mx-auto"></div>
+
+    </div>
+    <div class="col-4 text-center">
+      <button id="analyze" type="button" class="btn btn-outline-dark mx-auto">Analyze</button>
+      <!--<button id="download" type="button" class="btn btn-outline-dark mx-auto">Download</button>-->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4 text-center">
+      <!--<h4 class="mx-auto" style="color: white;"></h4>-->
+      <!--<button id="analyze" type="button" class="btn btn-outline-dark mx-auto">Analyze</button>-->
+      <!--<div class="your-clock mx-auto"></div>-->
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="/static/js/flipclock.min.js"></script></body>
+
+<script>
+  $("#download").hide();
+  $("#serverOn").hide();
+  $("#AIOn").hide();
+  $("#bar1").hide();
+  $("#bar2").hide();
+  $("#AIAnalyze").hide();
+  var clock;
+  $("#analyze").click(function(){
+    $.ajax({
+      type: 'POST',
+      url: "/analyzedImage",
+      data: {student_id: 1},
+      dataType: "text",
+      beforeSend: function(){
+          clock = $('.your-clock').FlipClock({
+                        clockFace: 'MinuteCounter'
+                      });
+          $("#serverOn").show();
+          $("#bar1").show();
+          $('#bar1').barfiller({
+              // color of bar
+              barColor: '#909090',
+              // shows a tooltip
+              tooltip: true,
+              // duration in ms
+              duration: 10000,
+              // re-animate on resize
+              animateOnResize: true,
+              // custom symbol  symbol: "%"
+            });
+          var delay = 10000;
+          setTimeout(function() {
+           // your code
+              $("#AIOn").show();
+              $("#bar2").show();
+              $('#bar2').barfiller({
+              // color of bar
+              barColor: '#909090',
+              // shows a tooltip
+              tooltip: true,
+              // duration in ms
+              duration: 10000,
+              // re-animate on resize
+              animateOnResize: true,
+              // custom symbol  symbol: "%"
+            });
+          }, delay);
+          var delay2 = 20000;
+          setTimeout(function() {
+           // your code
+               $("#AIAnalyze").show();
+
+              function equalizer(bar) {
+                // Syntax: Math.random() * (max-min = range) + min;
+                // My bars will be at least 70px, and at most 170px tall
+                var height = Math.random() * 100 + 70;
+                // Any timing would do the trick, mine is height times 7.5 to get a speedy yet bouncy vibe
+                var timing = height * 7.5;
+                // If you need to align them on a baseline, just remove this line and also the "marginTop: marg" from the "animate"
+                var marg = (170 - height) / 2;
+
+                bar.animate({
+                    height: height,
+                    marginTop: marg
+                }, timing, function() {
+                    equalizer($(this));
+                });
+              }
+
+              // Action on play-pause buttons can be added here (should be a wholesome function rather than annonymous)
+              $('#music-bars span').each(function(i) {
+                equalizer($(this));
+              });
+
+          }, delay2);
+
+
+          },
+      complete: function(){
+
+      },
+      success: function(response){
+          clock.stop(function() {
+              location.href = "http://ec2-13-235-76-81.ap-south-1.compute.amazonaws.com:5000/showAnalyzedImage/"
+          });
+          },
+      error: function(error) {console.log(error);}
+``    });
+});
+
+
+</script>
+
+</html>
+
